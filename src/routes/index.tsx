@@ -418,9 +418,10 @@ function Services() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {services.map(({ icon: Icon, t, items }, i) => (
           <motion.div key={t} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.05 }}
-            className="group relative rounded-3xl glass p-7 overflow-hidden hover:border-white/20 transition">
-            <div className="absolute -top-20 -right-20 h-48 w-48 rounded-full blur-3xl opacity-0 group-hover:opacity-40 transition" style={{ background: "var(--gradient-brand)" }} />
-            <div className="relative">
+            className="group">
+            <Tilt className="relative rounded-3xl glass p-7 overflow-hidden hover:border-white/20 transition h-full">
+            <div className="absolute -top-20 -right-20 h-48 w-48 rounded-full blur-3xl opacity-0 group-hover:opacity-60 transition" style={{ background: "var(--gradient-brand)" }} />
+            <div className="relative" style={{ transform: "translateZ(40px)" }}>
               <div className="grid h-12 w-12 place-items-center rounded-2xl" style={{ background: "var(--gradient-soft)" }}>
                 <Icon className="h-6 w-6 text-accent" />
               </div>
@@ -429,6 +430,7 @@ function Services() {
                 {items.map(x => <li key={x} className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-accent shrink-0" />{x}</li>)}
               </ul>
             </div>
+            </Tilt>
           </motion.div>
         ))}
       </div>
