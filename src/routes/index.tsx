@@ -150,6 +150,29 @@ function WhatsAppFab() {
 }
 
 /* ---------------- 3D Tilt wrapper ---------------- */
+function Typewriter({ words, typeSpeed = 70, deleteSpeed = 35, pause = 1400 }: { words: string[]; typeSpeed?: number; deleteSpeed?: number; pause?: number }) {
+  const [i, setI] = useState(0);
+  const [text, setText] = useState("");
+  const [deleting, setDeleting] = useState(false);
+  useEffect(() => {
+    const current = words[i % words.length];
+    if (!deleting && text === current) {
+      const t = setTimeout(() => setDeleting(true), pause);
+      return () => clearTimeout(t);
+    }
+    if (deleting && text === "") {
+      setDeleting(false);
+      setI(v => v + 1);
+      return;
+    }
+    const t = setTimeout(() => {
+      setText(deleting ? current.slice(0, text.length - 1) : current.slice(0, text.length + 1));
+    }, deleting ? deleteSpeed : typeSpeed);
+    return () => clearTimeout(t);
+  }, [text, deleting, i, words, typeSpeed, deleteSpeed, pause]);
+  return <span>{text}</span>;
+}
+
 function Tilt({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
