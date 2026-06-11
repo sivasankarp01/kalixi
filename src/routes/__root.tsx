@@ -81,10 +81,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Kalixi Technologies is a UAE-based digital company building modern websites, mobile apps, AI solutions, design and marketing that grow brands." },
       { name: "author", content: "Kalixi Technologies" },
       { property: "og:title", content: "Kalixi Technologies — From Idea to Impact" },
-      { property: "og:description", content: "Web, Mobile, AI, Design & Marketing solutions for ambitious brands." },
+      { property: "og:description", content: "Kalixi Technologies is a UAE-based digital company building modern websites, mobile apps, AI solutions, design and marketing that grow brands." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@kalixi" },
+      { name: "twitter:title", content: "Kalixi Technologies — From Idea to Impact" },
+      { name: "twitter:description", content: "Kalixi Technologies is a UAE-based digital company building modern websites, mobile apps, AI solutions, design and marketing that grow brands." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/cyFs9klhQzTP7cbnVvjQ8UYfASE2/social-images/social-1781181606293-kalixilogo.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/cyFs9klhQzTP7cbnVvjQ8UYfASE2/social-images/social-1781181606293-kalixilogo.webp" },
     ],
     links: [
       {
