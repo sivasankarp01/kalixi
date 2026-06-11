@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, useInView, useMotionValue, useSpring, useTransform } from "motion/react";
+import { motion, useInView, useMotionValue, useSpring, useTransform, useScroll } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight, Sparkles, Code2, Smartphone, Palette, Megaphone, PenTool, Video, Bot,
   Zap, Rocket, Globe, Shield, TrendingUp, Headphones, DollarSign, Target,
   Check, ChevronDown, Mail, MapPin, Phone, Linkedin, Instagram, Facebook,
-  Star, Quote, Calendar, Layers, Database, Cloud, Cpu, Brush, Layout,
+  Star, Quote, Calendar, Layers, Database, Cloud, Cpu, Brush, Layout, Sun, Moon, MessageCircle, X,
 } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 
@@ -26,6 +26,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-clip">
+      <ScrollProgress />
       <Nav />
       <main>
         <Hero />
@@ -45,7 +46,128 @@ function Index() {
         <FinalCTA />
       </main>
       <Footer />
+      <WhatsAppFab />
     </div>
+  );
+}
+
+/* ---------------- Scroll Progress ---------------- */
+function ScrollProgress() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 25, mass: 0.2 });
+  return (
+    <motion.div
+      className="fixed top-0 left-0 right-0 h-[3px] z-[60] origin-left"
+      style={{ scaleX, background: "var(--gradient-brand)" }}
+    />
+  );
+}
+
+/* ---------------- Theme Toggle ---------------- */
+function useTheme() {
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  useEffect(() => {
+    const stored = (typeof window !== "undefined" && localStorage.getItem("kalixi-theme")) as "dark" | "light" | null;
+    const initial = stored ?? "dark";
+    setTheme(initial);
+    document.documentElement.classList.toggle("light", initial === "light");
+  }, []);
+  const toggle = () => {
+    setTheme(t => {
+      const next = t === "dark" ? "light" : "dark";
+      document.documentElement.classList.toggle("light", next === "light");
+      try { localStorage.setItem("kalixi-theme", next); } catch {}
+      return next;
+    });
+  };
+  return { theme, toggle };
+}
+function ThemeToggle() {
+  const { theme, toggle } = useTheme();
+  return (
+    <button
+      onClick={toggle}
+      aria-label="Toggle color theme"
+      className="relative grid h-10 w-10 place-items-center rounded-xl glass hover:bg-white/10 transition overflow-hidden"
+    >
+      <motion.div
+        key={theme}
+        initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+        animate={{ rotate: 0, opacity: 1, scale: 1 }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
+      >
+        {theme === "dark" ? <Sun className="h-4 w-4 text-accent" /> : <Moon className="h-4 w-4 text-primary" />}
+      </motion.div>
+    </button>
+  );
+}
+
+/* ---------------- WhatsApp Floating Chat ---------------- */
+function WhatsAppFab() {
+  const [open, setOpen] = useState(false);
+  const phone = "971500000000"; // replace with real number
+  const message = encodeURIComponent("Hi Kalixi! I'd like to discuss a project.");
+  return (
+    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+      {open && (
+        <motion.div initial={{ opacity: 0, y: 12, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.25 }}
+          className="w-72 rounded-2xl glass shadow-[var(--shadow-elevated)] overflow-hidden">
+          <div className="flex items-center gap-3 p-4" style={{ background: "linear-gradient(135deg,#25D366,#128C7E)" }}>
+            <div className="grid h-10 w-10 place-items-center rounded-full bg-white/20">
+              <MessageCircle className="h-5 w-5 text-white" />
+            </div>
+            <div className="text-white">
+              <div className="font-semibold text-sm">Kalixi Support</div>
+              <div className="text-xs text-white/80">Typically replies in minutes</div>
+            </div>
+            <button onClick={() => setOpen(false)} aria-label="Close" className="ml-auto text-white/80 hover:text-white"><X className="h-4 w-4" /></button>
+          </div>
+          <div className="p-4 space-y-3">
+            <div className="rounded-2xl bg-muted/60 p-3 text-sm">👋 Hi there! How can we help you today?</div>
+            <a href={`https://wa.me/${phone}?text=${message}`} target="_blank" rel="noreferrer"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-white"
+              style={{ background: "linear-gradient(135deg,#25D366,#128C7E)" }}>
+              Start Chat on WhatsApp
+            </a>
+          </div>
+        </motion.div>
+      )}
+      <motion.button
+        onClick={() => setOpen(v => !v)}
+        aria-label="WhatsApp chat"
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.95 }}
+        className="relative grid h-14 w-14 place-items-center rounded-full text-white shadow-[var(--shadow-glow)]"
+        style={{ background: "linear-gradient(135deg,#25D366,#128C7E)" }}
+      >
+        <span className="absolute inset-0 rounded-full animate-pulse-glow" style={{ background: "rgba(37,211,102,0.5)", filter: "blur(14px)" }} />
+        <svg viewBox="0 0 32 32" className="relative h-7 w-7 fill-white">
+          <path d="M19.11 17.21c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.14-.42-2.17-1.34-.8-.71-1.34-1.59-1.5-1.86-.16-.27-.02-.41.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.46h-.52c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.98 2.63 1.11 2.81.14.18 1.93 2.94 4.68 4.12.65.28 1.16.45 1.56.58.65.21 1.25.18 1.72.11.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32zM16.02 5.33c-5.9 0-10.69 4.79-10.69 10.69 0 1.88.49 3.71 1.43 5.33L5.33 26.67l5.45-1.42a10.65 10.65 0 005.24 1.34h.01c5.9 0 10.69-4.79 10.69-10.69 0-2.85-1.11-5.54-3.13-7.56a10.61 10.61 0 00-7.56-3.13z"/>
+        </svg>
+      </motion.button>
+    </div>
+  );
+}
+
+/* ---------------- 3D Tilt wrapper ---------------- */
+function Tilt({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rx = useSpring(useTransform(y, [-50, 50], [8, -8]), { stiffness: 180, damping: 18 });
+  const ry = useSpring(useTransform(x, [-50, 50], [-8, 8]), { stiffness: 180, damping: 18 });
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = ref.current?.getBoundingClientRect(); if (!r) return;
+    x.set(e.clientX - r.left - r.width / 2);
+    y.set(e.clientY - r.top - r.height / 2);
+  };
+  const onLeave = () => { x.set(0); y.set(0); };
+  return (
+    <motion.div ref={ref} onMouseMove={onMove} onMouseLeave={onLeave}
+      style={{ rotateX: rx, rotateY: ry, transformPerspective: 1000, transformStyle: "preserve-3d" }}
+      className={className}>
+      {children}
+    </motion.div>
   );
 }
 
@@ -83,6 +205,7 @@ function Nav() {
             ))}
           </nav>
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             <a href="#contact" className="hidden sm:inline-flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-glow)] transition-transform hover:scale-[1.02]" style={{ background: "var(--gradient-brand)" }}>
               Book Free Consultation <ArrowRight className="h-4 w-4" />
             </a>
