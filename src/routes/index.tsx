@@ -536,10 +536,10 @@ function Tech() {
 /* ---------------- Products ---------------- */
 function Products() {
   const products = [
-    { t: "Worker Booking Platform", tags: ["Flutter", "Django", "Realtime"], d: "On-demand service marketplace with realtime booking & dispatch.", r: "30% faster bookings" },
-    { t: "E-Commerce Platform", tags: ["React", "Node.js", "Stripe"], d: "Modern storefront with payments, inventory and analytics built in.", r: "2.4x conversion lift" },
-    { t: "Business CRM", tags: ["Dashboard", "Analytics", "Automation"], d: "Sales pipeline, customer management and reporting in one place.", r: "Saves 12h / week" },
-    { t: "AI Customer Support", tags: ["Chatbot", "Automation", "Leads"], d: "24/7 AI assistant capturing leads and resolving tickets automatically.", r: "65% auto-resolved" },
+    { t: "Worker Booking Platform", tags: ["Flutter", "Django", "Realtime"], d: "On-demand service marketplace with realtime booking & dispatch.", r: "30% faster bookings", img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" },
+    { t: "E-Commerce Platform", tags: ["React", "Node.js", "Stripe"], d: "Modern storefront with payments, inventory and analytics built in.", r: "2.4x conversion lift", img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80" },
+    { t: "Business CRM", tags: ["Dashboard", "Analytics", "Automation"], d: "Sales pipeline, customer management and reporting in one place.", r: "Saves 12h / week", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" },
+    { t: "AI Customer Support", tags: ["Chatbot", "Automation", "Leads"], d: "24/7 AI assistant capturing leads and resolving tickets automatically.", r: "65% auto-resolved", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80" },
   ];
   return (
     <Section id="products" eyebrow="Products" title="Products & success stories"
@@ -547,11 +547,13 @@ function Products() {
       <div className="grid md:grid-cols-2 gap-5">
         {products.map((p, i) => (
           <motion.div key={p.t} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.05 }}
-            className="rounded-3xl glass p-7 flex flex-col">
-            <div className="aspect-[16/9] rounded-2xl mb-5 relative overflow-hidden" style={{ background: "var(--gradient-brand)" }}>
-              <div className="absolute inset-0 bg-grid opacity-20" />
-              <div className="absolute inset-0 grid place-items-center">
-                <span className="font-display text-2xl font-bold text-white drop-shadow-lg">{p.t}</span>
+            className="group">
+            <Tilt className="rounded-3xl glass p-7 flex flex-col h-full">
+            <div className="aspect-[16/9] rounded-2xl mb-5 relative overflow-hidden">
+              <img src={p.img} alt={p.t} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 30%, oklch(0.12 0.04 264 / 0.65))" }} />
+              <div className="absolute bottom-3 left-4 right-4">
+                <span className="font-display text-xl font-bold text-white drop-shadow-lg">{p.t}</span>
               </div>
             </div>
             <h3 className="text-xl font-semibold">{p.t}</h3>
@@ -562,6 +564,7 @@ function Products() {
             <div className="mt-4 flex items-center gap-2 text-sm text-accent font-medium">
               <TrendingUp className="h-4 w-4" />{p.r}
             </div>
+            </Tilt>
           </motion.div>
         ))}
       </div>
@@ -572,12 +575,12 @@ function Products() {
 /* ---------------- Portfolio ---------------- */
 function Portfolio() {
   const items = [
-    { cat: "Web", t: "Fintech Landing", g: "from-blue-500 to-purple-600", h: "h-72" },
-    { cat: "Mobile", t: "Fitness App", g: "from-cyan-500 to-blue-600", h: "h-96" },
-    { cat: "Branding", t: "Cafe Identity", g: "from-purple-500 to-pink-500", h: "h-64" },
-    { cat: "Marketing", t: "Launch Campaign", g: "from-orange-500 to-red-500", h: "h-80" },
-    { cat: "UI/UX", t: "Banking Dashboard", g: "from-emerald-500 to-cyan-600", h: "h-72" },
-    { cat: "Web", t: "SaaS Platform", g: "from-indigo-500 to-purple-600", h: "h-64" },
+    { cat: "Web", t: "Fintech Landing", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80", h: "h-72" },
+    { cat: "Mobile", t: "Fitness App", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=900&q=80", h: "h-96" },
+    { cat: "Branding", t: "Cafe Identity", img: "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=900&q=80", h: "h-64" },
+    { cat: "Marketing", t: "Launch Campaign", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=900&q=80", h: "h-80" },
+    { cat: "UI/UX", t: "Banking Dashboard", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80", h: "h-72" },
+    { cat: "Web", t: "SaaS Platform", img: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=900&q=80", h: "h-64" },
   ];
   const [filter, setFilter] = useState<string>("All");
   const cats = ["All", "Web", "Mobile", "Branding", "Marketing", "UI/UX"];
@@ -596,11 +599,12 @@ function Portfolio() {
       <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 [&>*]:mb-5">
         {filtered.map((it, i) => (
           <motion.div key={it.t + i} layout initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.4 }}
-            className={`relative rounded-2xl overflow-hidden bg-gradient-to-br ${it.g} ${it.h} break-inside-avoid cursor-pointer group`}>
-            <div className="absolute inset-0 bg-grid opacity-20" />
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition" />
+            className={`relative rounded-2xl overflow-hidden ${it.h} break-inside-avoid cursor-pointer group`}>
+            <img src={it.img} alt={it.t} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 40%, oklch(0.10 0.04 264 / 0.80))" }} />
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition" style={{ background: "linear-gradient(135deg, oklch(0.55 0.22 264 / 0.5), oklch(0.55 0.26 295 / 0.4))" }} />
             <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-2 group-hover:translate-y-0 transition">
-              <div className="text-xs text-white/70 uppercase tracking-wider">{it.cat}</div>
+              <div className="text-xs text-white/80 uppercase tracking-wider">{it.cat}</div>
               <div className="font-display text-lg font-bold text-white">{it.t}</div>
             </div>
           </motion.div>
@@ -639,20 +643,21 @@ function Process() {
 /* ---------------- Team ---------------- */
 function Team() {
   const team = [
-    { n: "Aarav Kalix", r: "Founder & CEO", s: "Strategy · Product" },
-    { n: "Sara Mansoori", r: "Lead Developer", s: "React · Node · Cloud" },
-    { n: "Yusuf Rahman", r: "UI/UX Designer", s: "Figma · Design Systems" },
-    { n: "Layla Hassan", r: "Marketing Lead", s: "Paid · SEO · Content" },
-    { n: "Omar Idris", r: "Graphic Designer", s: "Brand · Motion · Print" },
+    { n: "Aarav Kalix", r: "Founder & CEO", s: "Strategy · Product", img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" },
+    { n: "Sara Mansoori", r: "Lead Developer", s: "React · Node · Cloud", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" },
+    { n: "Yusuf Rahman", r: "UI/UX Designer", s: "Figma · Design Systems", img: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=400&q=80" },
+    { n: "Layla Hassan", r: "Marketing Lead", s: "Paid · SEO · Content", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80" },
+    { n: "Omar Idris", r: "Graphic Designer", s: "Brand · Motion · Print", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" },
   ];
   return (
     <Section id="team" eyebrow="Meet the Team" title="Humans behind the pixels">
       <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
         {team.map((m, i) => (
           <motion.div key={m.n} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.06 }}
+            whileHover={{ y: -6 }}
             className="rounded-3xl glass p-5 text-center">
-            <div className="mx-auto h-28 w-28 rounded-full grid place-items-center font-display text-3xl font-bold text-white" style={{ background: "var(--gradient-brand)" }}>
-              {m.n.split(" ").map(x => x[0]).join("")}
+            <div className="mx-auto h-28 w-28 rounded-full overflow-hidden ring-2 ring-white/10 relative" style={{ boxShadow: "var(--shadow-glow)" }}>
+              <img src={m.img} alt={m.n} loading="lazy" className="h-full w-full object-cover" />
             </div>
             <h4 className="mt-4 font-semibold">{m.n}</h4>
             <div className="text-sm text-accent">{m.r}</div>
@@ -744,20 +749,20 @@ function FAQ() {
 /* ---------------- Blog ---------------- */
 function Blog() {
   const posts = [
-    { t: "Web Development Trends 2026", c: "Engineering", d: "From server components to edge runtimes — what's actually shipping." },
-    { t: "Mobile App Best Practices", c: "Mobile", d: "Performance, accessibility and design that converts on small screens." },
-    { t: "AI for Business: A Practical Guide", c: "AI", d: "Where to start, what to automate, and pitfalls to avoid." },
-    { t: "Digital Marketing Tips That Work", c: "Marketing", d: "Channels, content and measurement playbooks for 2026." },
-    { t: "Startup Growth Strategies", c: "Startups", d: "Lean experiments that compound into real traction." },
+    { t: "Web Development Trends 2026", c: "Engineering", d: "From server components to edge runtimes — what's actually shipping.", img: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80" },
+    { t: "Mobile App Best Practices", c: "Mobile", d: "Performance, accessibility and design that converts on small screens.", img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=80" },
+    { t: "AI for Business: A Practical Guide", c: "AI", d: "Where to start, what to automate, and pitfalls to avoid.", img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=900&q=80" },
   ];
   return (
     <Section id="blog" eyebrow="Insights" title="From our blog">
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
         {posts.slice(0, 3).map((p, i) => (
           <motion.a key={p.t} href="#" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.06 }}
+            whileHover={{ y: -6 }}
             className="group rounded-3xl glass overflow-hidden flex flex-col">
-            <div className="aspect-[16/9] relative overflow-hidden" style={{ background: "var(--gradient-brand)" }}>
-              <div className="absolute inset-0 bg-grid opacity-20" />
+            <div className="aspect-[16/9] relative overflow-hidden">
+              <img src={p.img} alt={p.t} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 50%, oklch(0.12 0.04 264 / 0.5))" }} />
             </div>
             <div className="p-6 flex-1 flex flex-col">
               <div className="text-xs text-accent font-medium uppercase tracking-wider">{p.c}</div>
