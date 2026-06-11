@@ -473,18 +473,45 @@ function WhyUs() {
 /* ---------------- Tech ---------------- */
 function Tech() {
   const groups = [
-    { i: Code2, name: "Frontend", items: ["React", "Next.js", "Flutter"] },
-    { i: Cpu, name: "Backend", items: ["Node.js", "Express", "Python", "Django"] },
-    { i: Database, name: "Database", items: ["MongoDB", "PostgreSQL", "Firebase"] },
-    { i: Cloud, name: "Cloud", items: ["AWS", "Google Cloud", "Vercel"] },
-    { i: Brush, name: "Design", items: ["Figma", "Adobe Suite"] },
-    { i: Bot, name: "AI", items: ["OpenAI", "Gemini", "Claude"] },
+    { i: Code2, name: "Frontend", items: [
+      { n: "React", slug: "react", c: "61DAFB" },
+      { n: "Next.js", slug: "nextdotjs", c: "ffffff" },
+      { n: "Flutter", slug: "flutter", c: "02569B" },
+      { n: "TypeScript", slug: "typescript", c: "3178C6" },
+    ]},
+    { i: Cpu, name: "Backend", items: [
+      { n: "Node.js", slug: "nodedotjs", c: "5FA04E" },
+      { n: "Express", slug: "express", c: "ffffff" },
+      { n: "Python", slug: "python", c: "3776AB" },
+      { n: "Django", slug: "django", c: "092E20" },
+    ]},
+    { i: Database, name: "Database", items: [
+      { n: "MongoDB", slug: "mongodb", c: "47A248" },
+      { n: "PostgreSQL", slug: "postgresql", c: "4169E1" },
+      { n: "Firebase", slug: "firebase", c: "FFCA28" },
+    ]},
+    { i: Cloud, name: "Cloud", items: [
+      { n: "AWS", slug: "amazonwebservices", c: "FF9900" },
+      { n: "Google Cloud", slug: "googlecloud", c: "4285F4" },
+      { n: "Vercel", slug: "vercel", c: "ffffff" },
+      { n: "Cloudflare", slug: "cloudflare", c: "F38020" },
+    ]},
+    { i: Brush, name: "Design", items: [
+      { n: "Figma", slug: "figma", c: "F24E1E" },
+      { n: "Adobe XD", slug: "adobexd", c: "FF61F6" },
+      { n: "Photoshop", slug: "adobephotoshop", c: "31A8FF" },
+    ]},
+    { i: Bot, name: "AI", items: [
+      { n: "OpenAI", slug: "openai", c: "10A37F" },
+      { n: "Google Gemini", slug: "googlegemini", c: "8E75B2" },
+      { n: "Anthropic", slug: "anthropic", c: "D4A27F" },
+    ]},
   ];
   return (
     <Section eyebrow="Stack" title="Tools we use to build the future">
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {groups.map(({ i: Icon, name, items }) => (
-          <div key={name} className="rounded-2xl glass p-6">
+          <Tilt key={name} className="rounded-2xl glass p-6">
             <div className="flex items-center gap-3">
               <div className="grid h-10 w-10 place-items-center rounded-xl" style={{ background: "var(--gradient-soft)" }}>
                 <Icon className="h-5 w-5 text-accent" />
@@ -493,10 +520,13 @@ function Tech() {
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
               {items.map(x => (
-                <span key={x} className="rounded-full border border-border bg-white/5 px-3 py-1 text-xs text-muted-foreground">{x}</span>
+                <span key={x.n} className="inline-flex items-center gap-1.5 rounded-full border border-border bg-white/5 px-3 py-1.5 text-xs text-foreground hover:scale-105 transition-transform">
+                  <img src={`https://cdn.simpleicons.org/${x.slug}/${x.c}`} alt={x.n} width={14} height={14} className="h-3.5 w-3.5" loading="lazy" />
+                  {x.n}
+                </span>
               ))}
             </div>
-          </div>
+          </Tilt>
         ))}
       </div>
     </Section>
