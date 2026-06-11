@@ -264,7 +264,14 @@ function Section({ id, eyebrow, title, subtitle, children, className = "" }: {
             )}
           </div>
         )}
-        {children}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {children}
+        </motion.div>
       </div>
     </section>
   );
@@ -286,7 +293,16 @@ function Hero() {
           </span>
           <h1 className="mt-6 font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
             Transforming ideas into
-            <span className="block text-gradient">powerful digital experiences.</span>
+            <span className="block text-gradient min-h-[1.1em]">
+              <Typewriter words={[
+                "powerful digital experiences.",
+                "scalable mobile apps.",
+                "AI-powered solutions.",
+                "brands that convert.",
+                "products people love.",
+              ]} />
+              <span className="inline-block w-[3px] h-[0.9em] align-[-0.1em] ml-1 bg-accent animate-pulse" />
+            </span>
           </h1>
           <p className="mt-6 mx-auto max-w-2xl text-lg text-muted-foreground">
             We build modern websites, mobile applications, digital marketing campaigns and creative solutions that help businesses grow faster.
