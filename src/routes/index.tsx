@@ -316,7 +316,7 @@ function Hero() {
           </span>
           <h1 className="mt-6 font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
             Transforming ideas into
-            <span className="block text-gradient min-h-[1.1em]">
+            <span className="block text-gradient min-h-[1.2em] text-3xl sm:text-4xl lg:text-5xl mt-2">
               <Typewriter words={[
                 "powerful digital experiences.",
                 "scalable mobile apps.",
@@ -442,29 +442,33 @@ function About() {
 
 /* ---------------- Services ---------------- */
 const services = [
-  { icon: Code2, t: "Web Development", items: ["Business Websites", "Corporate Sites", "E-Commerce Stores", "Web Applications", "Landing Pages"] },
-  { icon: Smartphone, t: "Mobile App Development", items: ["Android Apps", "iOS Apps", "Flutter", "Cross-Platform", "App Maintenance"] },
-  { icon: Layout, t: "UI / UX Design", items: ["Wireframes", "Prototypes", "User Experience", "Interface Design"] },
-  { icon: Megaphone, t: "Digital Marketing", items: ["Instagram & TikTok", "Facebook & LinkedIn", "Social Management", "Lead Generation"] },
-  { icon: PenTool, t: "Graphic Design", items: ["Logo Design", "Brand Identity", "Social Creatives", "Marketing Materials"] },
-  { icon: Video, t: "Video Editing", items: ["Reels & Shorts", "Promotional Videos", "Motion Graphics"] },
-  { icon: Bot, t: "AI Solutions", items: ["AI Chatbots", "Automation", "AI Integration", "Process Automation"] },
+  { icon: Code2, t: "Web Development", img: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=800&q=80", items: ["Business Websites", "Corporate Sites", "E-Commerce Stores", "Web Applications", "Landing Pages"] },
+  { icon: Smartphone, t: "Mobile App Development", img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80", items: ["Android Apps", "iOS Apps", "Flutter", "Cross-Platform", "App Maintenance"] },
+  { icon: Layout, t: "UI / UX Design", img: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=800&q=80", items: ["Wireframes", "Prototypes", "User Experience", "Interface Design"] },
+  { icon: Megaphone, t: "Digital Marketing", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80", items: ["Instagram & TikTok", "Facebook & LinkedIn", "Social Management", "Lead Generation"] },
+  { icon: PenTool, t: "Graphic Design", img: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80", items: ["Logo Design", "Brand Identity", "Social Creatives", "Marketing Materials"] },
+  { icon: Video, t: "Video Editing", img: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80", items: ["Reels & Shorts", "Promotional Videos", "Motion Graphics"] },
+  { icon: Bot, t: "AI Solutions", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80", items: ["AI Chatbots", "Automation", "AI Integration", "Process Automation"] },
 ];
 function Services() {
   return (
     <Section id="services" eyebrow="What We Do" title="Services that move the needle"
       subtitle="End-to-end digital capabilities — from a single landing page to a multi-platform product launch.">
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {services.map(({ icon: Icon, t, items }, i) => (
+        {services.map(({ icon: Icon, t, items, img }, i) => (
           <motion.div key={t} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.05 }}
             className="group">
             <Tilt className="relative rounded-3xl glass p-7 overflow-hidden hover:border-white/20 transition h-full">
             <div className="absolute -top-20 -right-20 h-48 w-48 rounded-full blur-3xl opacity-0 group-hover:opacity-60 transition" style={{ background: "var(--gradient-brand)" }} />
             <div className="relative" style={{ transform: "translateZ(40px)" }}>
-              <div className="grid h-12 w-12 place-items-center rounded-2xl" style={{ background: "var(--gradient-soft)" }}>
-                <Icon className="h-6 w-6 text-accent" />
+              <div className="aspect-[16/9] rounded-2xl overflow-hidden mb-5 relative">
+                <img src={img} alt={t} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 40%, oklch(0.12 0.04 264 / 0.55))" }} />
+                <div className="absolute top-3 left-3 grid h-10 w-10 place-items-center rounded-xl backdrop-blur-md bg-black/30 ring-1 ring-white/20">
+                  <Icon className="h-5 w-5 text-white" />
+                </div>
               </div>
-              <h3 className="mt-5 text-lg font-semibold">{t}</h3>
+              <h3 className="text-lg font-semibold">{t}</h3>
               <ul className="mt-4 space-y-1.5 text-sm text-muted-foreground">
                 {items.map(x => <li key={x} className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-accent shrink-0" />{x}</li>)}
               </ul>
@@ -620,6 +624,12 @@ function Portfolio() {
     { cat: "Marketing", t: "Launch Campaign", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=900&q=80", h: "h-80" },
     { cat: "UI/UX", t: "Banking Dashboard", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80", h: "h-72" },
     { cat: "Web", t: "SaaS Platform", img: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=900&q=80", h: "h-64" },
+    { cat: "Mobile", t: "Food Delivery App", img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=80", h: "h-80" },
+    { cat: "Web", t: "Real Estate Portal", img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80", h: "h-72" },
+    { cat: "Branding", t: "Luxury Hotel Brand", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80", h: "h-96" },
+    { cat: "UI/UX", t: "Healthcare App", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80", h: "h-64" },
+    { cat: "Marketing", t: "E-Commerce Growth", img: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=900&q=80", h: "h-72" },
+    { cat: "Web", t: "Travel Booking Site", img: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=900&q=80", h: "h-80" },
   ];
   const [filter, setFilter] = useState<string>("All");
   const cats = ["All", "Web", "Mobile", "Branding", "Marketing", "UI/UX"];
@@ -899,7 +909,7 @@ function FinalCTA() {
             </h2>
             <p className="mt-4 text-white/85 max-w-xl mx-auto">Let's transform your idea into a successful digital product.</p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <a href="#contact" className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-foreground hover:bg-white/90 transition">
+              <a href="#contact" className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-slate-900 hover:bg-white/90 transition shadow-lg">
                 Start Your Project <ArrowRight className="h-4 w-4" />
               </a>
               <a href="#contact" className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-6 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition">
