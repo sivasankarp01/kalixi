@@ -909,7 +909,7 @@ function FinalCTA() {
             </h2>
             <p className="mt-4 text-white/85 max-w-xl mx-auto">Let's transform your idea into a successful digital product.</p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <a href="#contact" className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-foreground hover:bg-white/90 transition">
+              <a href="#contact" className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-slate-900 hover:bg-white/90 transition shadow-lg">
                 Start Your Project <ArrowRight className="h-4 w-4" />
               </a>
               <a href="#contact" className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-6 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition">
