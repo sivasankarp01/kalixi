@@ -316,7 +316,7 @@ function Hero() {
           </span>
           <h1 className="mt-6 font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
             Transforming ideas into
-            <span className="block text-gradient min-h-[1.1em]">
+            <span className="block text-gradient min-h-[1.2em] text-3xl sm:text-4xl lg:text-5xl mt-2">
               <Typewriter words={[
                 "powerful digital experiences.",
                 "scalable mobile apps.",
