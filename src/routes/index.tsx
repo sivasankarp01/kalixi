@@ -442,29 +442,33 @@ function About() {
 
 /* ---------------- Services ---------------- */
 const services = [
-  { icon: Code2, t: "Web Development", items: ["Business Websites", "Corporate Sites", "E-Commerce Stores", "Web Applications", "Landing Pages"] },
-  { icon: Smartphone, t: "Mobile App Development", items: ["Android Apps", "iOS Apps", "Flutter", "Cross-Platform", "App Maintenance"] },
-  { icon: Layout, t: "UI / UX Design", items: ["Wireframes", "Prototypes", "User Experience", "Interface Design"] },
-  { icon: Megaphone, t: "Digital Marketing", items: ["Instagram & TikTok", "Facebook & LinkedIn", "Social Management", "Lead Generation"] },
-  { icon: PenTool, t: "Graphic Design", items: ["Logo Design", "Brand Identity", "Social Creatives", "Marketing Materials"] },
-  { icon: Video, t: "Video Editing", items: ["Reels & Shorts", "Promotional Videos", "Motion Graphics"] },
-  { icon: Bot, t: "AI Solutions", items: ["AI Chatbots", "Automation", "AI Integration", "Process Automation"] },
+  { icon: Code2, t: "Web Development", img: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=800&q=80", items: ["Business Websites", "Corporate Sites", "E-Commerce Stores", "Web Applications", "Landing Pages"] },
+  { icon: Smartphone, t: "Mobile App Development", img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80", items: ["Android Apps", "iOS Apps", "Flutter", "Cross-Platform", "App Maintenance"] },
+  { icon: Layout, t: "UI / UX Design", img: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=800&q=80", items: ["Wireframes", "Prototypes", "User Experience", "Interface Design"] },
+  { icon: Megaphone, t: "Digital Marketing", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80", items: ["Instagram & TikTok", "Facebook & LinkedIn", "Social Management", "Lead Generation"] },
+  { icon: PenTool, t: "Graphic Design", img: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80", items: ["Logo Design", "Brand Identity", "Social Creatives", "Marketing Materials"] },
+  { icon: Video, t: "Video Editing", img: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80", items: ["Reels & Shorts", "Promotional Videos", "Motion Graphics"] },
+  { icon: Bot, t: "AI Solutions", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80", items: ["AI Chatbots", "Automation", "AI Integration", "Process Automation"] },
 ];
 function Services() {
   return (
     <Section id="services" eyebrow="What We Do" title="Services that move the needle"
       subtitle="End-to-end digital capabilities — from a single landing page to a multi-platform product launch.">
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {services.map(({ icon: Icon, t, items }, i) => (
+        {services.map(({ icon: Icon, t, items, img }, i) => (
           <motion.div key={t} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.05 }}
             className="group">
             <Tilt className="relative rounded-3xl glass p-7 overflow-hidden hover:border-white/20 transition h-full">
             <div className="absolute -top-20 -right-20 h-48 w-48 rounded-full blur-3xl opacity-0 group-hover:opacity-60 transition" style={{ background: "var(--gradient-brand)" }} />
             <div className="relative" style={{ transform: "translateZ(40px)" }}>
-              <div className="grid h-12 w-12 place-items-center rounded-2xl" style={{ background: "var(--gradient-soft)" }}>
-                <Icon className="h-6 w-6 text-accent" />
+              <div className="aspect-[16/9] rounded-2xl overflow-hidden mb-5 relative">
+                <img src={img} alt={t} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 40%, oklch(0.12 0.04 264 / 0.55))" }} />
+                <div className="absolute top-3 left-3 grid h-10 w-10 place-items-center rounded-xl backdrop-blur-md bg-black/30 ring-1 ring-white/20">
+                  <Icon className="h-5 w-5 text-white" />
+                </div>
               </div>
-              <h3 className="mt-5 text-lg font-semibold">{t}</h3>
+              <h3 className="text-lg font-semibold">{t}</h3>
               <ul className="mt-4 space-y-1.5 text-sm text-muted-foreground">
                 {items.map(x => <li key={x} className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-accent shrink-0" />{x}</li>)}
               </ul>
