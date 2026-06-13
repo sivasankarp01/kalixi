@@ -624,6 +624,12 @@ function Portfolio() {
     { cat: "Marketing", t: "Launch Campaign", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=900&q=80", h: "h-80" },
     { cat: "UI/UX", t: "Banking Dashboard", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80", h: "h-72" },
     { cat: "Web", t: "SaaS Platform", img: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=900&q=80", h: "h-64" },
+    { cat: "Mobile", t: "Food Delivery App", img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=80", h: "h-80" },
+    { cat: "Web", t: "Real Estate Portal", img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=80", h: "h-72" },
+    { cat: "Branding", t: "Luxury Hotel Brand", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80", h: "h-96" },
+    { cat: "UI/UX", t: "Healthcare App", img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80", h: "h-64" },
+    { cat: "Marketing", t: "E-Commerce Growth", img: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=900&q=80", h: "h-72" },
+    { cat: "Web", t: "Travel Booking Site", img: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=900&q=80", h: "h-80" },
   ];
   const [filter, setFilter] = useState<string>("All");
   const cats = ["All", "Web", "Mobile", "Branding", "Marketing", "UI/UX"];
