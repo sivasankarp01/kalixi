@@ -12,4 +12,9 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  nitro: {
+    // Vercel needs a Vercel-shaped serverless build. The Lovable preset defaults
+    // to Cloudflare, which deploys without a Vercel catch-all function.
+    preset: "vercel",
+  },
 });
